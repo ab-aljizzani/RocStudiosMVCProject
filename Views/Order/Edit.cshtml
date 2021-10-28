@@ -1,0 +1,67 @@
+﻿@model RocStudiosMVCProject.Models.Order
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
+    List<SelectListItem> listCases = new List<SelectListItem>();
+    listCases.Add(new SelectListItem() { Text = "الى جاري التنفيذ", Value = Model.OrderCase2 });
+    listCases.Add(new SelectListItem() { Text = "الى تم التنفيذ", Value = Model.OrderCase3 });
+}
+
+@using (Html.BeginForm("Edit", "Order"))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.id)
+    <div class=" container pt-20">
+        <div class="h-4/5 flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-md w-full space-y-8">
+                <div>
+                    <div class="form-group">
+                        Customer Name
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Name , new { htmlAttributes = new { @class = "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-secodary focus:border-secodary focus:z-10 sm:text-sm", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.Name , "", new { @class = "text-red-700" })
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        Customer Email
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.CustomerEmail, new { htmlAttributes = new { @class = "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-secodary focus:border-secodary focus:z-10 sm:text-sm", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.CustomerEmail, "", new { @class = "text-red-700" })
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        Customer Phone Number
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.CustomerPhoneNum, new { htmlAttributes = new { @class = "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-secodary focus:border-secodary focus:z-10 sm:text-sm", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.CustomerPhoneNum, "", new { @class = "text-red-700" })
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.OrderCase, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.OrderCase, new SelectList(listCases, "Value", "Text"), "تعديل حالة الطلب", htmlAttributes: new { @class = "mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-secodary focus:border-secodary sm:text-sm text-right" })
+                            @Html.ValidationMessageFor(model => model.OrderCase, "", new { @class = "text-red-700" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" onclick="return confirm('Are You Sure Want To Change Order Case Email Will Send To Customer ')" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-secodary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secodary" />
+                    </div>
+                </div>
+                <div class="hover:text-secodary">
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            </div>
+        </div>
+    </div>
+}

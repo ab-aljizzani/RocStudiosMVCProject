@@ -1,0 +1,81 @@
+﻿@model IEnumerable<RocStudiosMVCProject.Models.Services>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+<div class="flex flex-col pt-20">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <a href="@Url.Action("New","Services") " class="group relative w-40 flex justify-center ml-8 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-secodary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secodary">+ Add New Service</a>
+        <br />
+        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                <table class="min-w-full divide-y divide-gray-200 ">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                @Html.DisplayNameFor(model => model.id)
+                            </th>
+
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                @Html.DisplayNameFor(model => model.ServTitleEng)
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                @Html.DisplayNameFor(model => model.ServTitleAr)
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                @Html.DisplayNameFor(model => model.ServDescEng)
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                @Html.DisplayNameFor(model => model.ServDescAr)
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                @Html.DisplayNameFor(model => model.ServImg)
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-center float-right text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                @Html.DisplayFor(modelItem => item.id)
+                            </td>
+                            <td class="px-6 py-3 items-start justify-center text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                @Html.DisplayFor(modelItem => item.ServTitleEng)
+                            </td>
+                            <td class="px-6 py-3 items-start justify-center text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                @Html.DisplayFor(modelItem => item.ServTitleAr)
+                            </td>
+                            <td class="px-6 py-3 items-start justify-center text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                @Html.DisplayFor(modelItem => item.ServDescEng)
+                            </td>
+                            <td class="px-6 py-3 items-start justify-center text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                @Html.DisplayFor(modelItem => item.ServDescAr)
+                            </td>
+                            <td class="px-6 py-3 items-center justify-center text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <img class="h-20 w-20 items-center justify-center text-center" src="@Url.Content("~/public/Img/Services/" + item.ServImg)" alt="">
+                            </td>
+                            @using (Html.BeginForm("Delete", "Services", new { id = item.id }))
+                            {
+                                <td class="px-6 py-3 my-8 text-righ float-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Delete" onclick="return confirm('Are You Sure You Want To Delete This Image ? ')" class="group relative w-20 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-secodary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secodary" />
+                                    </div>
+                                </td>
+                            }
+                        </tr>
+                        }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

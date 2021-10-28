@@ -1,0 +1,95 @@
+﻿@model IEnumerable<RocStudiosMVCProject.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
+}
+<div class="flex flex-col pt-20">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                <table class="min-w-full divide-y divide-gray-200" id="myTable">
+                    <thead class="bg-gray-50">
+
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                id
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                @Html.DisplayNameFor(model => model.CustomerEmail)
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                @Html.DisplayNameFor(model => model.CustomerPhoneNum)
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                @Html.DisplayNameFor(model => model.OrderCase)
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                @Html.DisplayNameFor(model => model.OrderDate)
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900"> @Html.DisplayFor(modelItem => item.ServId)</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900"> @Html.DisplayFor(modelItem => item.CustomerEmail)</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">  @Html.DisplayFor(modelItem => item.Name)</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">  @Html.DisplayFor(modelItem => item.CustomerPhoneNum)</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                @if (item.OrderCase == item.OrderCase1)
+                                {<div class="text-sm text-green-500"> @Html.DisplayFor(modelItem => item.OrderCase)</div>}
+                            else if (item.OrderCase == item.OrderCase2)
+                            {<div class="text-sm text-blue-500"> @Html.DisplayFor(modelItem => item.OrderCase)</div> }
+                        else if (item.OrderCase == item.OrderCase3)
+                        {<div class="text-sm text-secodary"> @Html.DisplayFor(modelItem => item.OrderCase)</div>}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">  @Html.DisplayFor(modelItem => item.OrderDate)</div>
+                            </td>
+                            <td class="px-6 py-3  text-xs font-medium text-gray-500 uppercase flex flex-1 gap-4 justify-start">
+                                <div class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-secodary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secodary">@Html.ActionLink("Edit", "Edit", new { id = item.id }) </div>
+                                <div class="col-md-offset-2 col-md-10">
+                                    @*@using (Html.BeginForm("Delete", "Account", new { id = item.id }))
+                {
+                    <input type="submit" value="Delete" onclick="return confirm('Are You Sure You Want To Delete This User ? ')" class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-secodary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secodary uppercase" />
+                }*@
+                                </div>
+
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+            $('#myTable2').DataTable();
+        });</script>
+}
+
+

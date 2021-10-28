@@ -1,0 +1,165 @@
+﻿@model RocStudiosMVCProject.ViewModels.AllModels
+@using RocStudiosMVCProject.Resources;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_RocTailwindCss.cshtml";
+}
+
+<section class="relative ">
+    <div class="container flex flex-col-reverse items-center gap-12 lg:flex-row mt-14 lg:mt-28">
+        <div class="flex flex-col items-center flex-1 lg:items-start">
+            <h2 class="mb-6 text-3xl text-center text-primary md:text-4xl lg:text-5xl lg:text-left">
+                @Lang.HomeTitle
+            </h2>
+            <p class="mb-6 text-lg text-center text-gray-400 lg:text-left">
+                @Lang.HomeDis
+            </p>
+            <div class="flex flex-wrap justify-center gap-6 ">
+                <a href="#services" class="px-3 text-xs font-semibold tracking-wider uppercase transition duration-500 border-2 rounded-full cursor-pointer text-primary lg:py-1 border-primary hover:bg-primary hover:text-white ">@Lang.HomeBtn</a>
+            </div>
+        </div>
+        <div class="flex justify-center flex-1 mb-10 md:mb-16 lg:mb-0">
+            <img class="z-10 w-3/4 h-3/4 sm:w-3/4 sm:h-3/4 hover:shadow-lg" src="~/public/Img/header/Home.jpg">
+        </div>
+    </div>
+    <div class="absolute right-0 hidden w-5/12 h-64 overflow-hidden rounded-l-full md:block bg-primary top-32 lg:-bottom-28 lg:-right-26"></div>
+</section>
+
+<section class="py-32 mt-20 bg-white " id="about">
+    @foreach (var item in Model.about)
+    {
+        <div class="px-2 mx-auto sm:w-3/4 lg:w-5/12">
+            <h1 class="text-3xl text-center uppercase text-primary">@Lang.AboutTitle</h1>
+        </div>
+        <div class="container flex flex-col-reverse items-center gap-12 mt-4 lg:flex-row lg:mt-6">
+            <div class="flex flex-col items-center flex-1 lg:items-center">
+                <p class="text-justify text-gray-400 ">
+                    @if(Session["lang"].ToString() == null)
+                    { Session["lang"] = "en"; }
+                    @if (Session["lang"].ToString() != null && Session["lang"].ToString() == "en")
+                    {
+                    @item.aboutEng
+                    }
+                    else
+                    {
+                        @item.aboutAr
+                    }
+                </p>
+
+            </div>
+            <div class="flex justify-center flex-1 mb-10 md:mb-16 lg:mb-0">
+                <img class="w-2/5 mb-10 mr-16 rounded-md h-2/5 sm:w-2/5 sm:h-2/5 hover:shadow-xl" src="@Url.Content("~/public/Img/About/" + item.aboutImg)" />
+            </div>
+        </div>
+    }
+</section>
+
+<section class="py-32 mt-10 bg-white " id="portfolio">
+    <div class="px-2 mx-auto sm:w-3/4 lg:w-5/12">
+        <h1 class="text-3xl text-center text-primary">@Lang.PortfolioTitle</h1>
+        <p class="text-center text-gray-400 ">@Lang.PortfolioDis</p>
+    </div>
+    <div class="container grid max-w-screen-lg grid-cols-1 gap-6 mt-16 md:grid-cols-2 lg:grid-cols-3" id="devim">
+        @foreach (var item in Model.portfolio)
+        {
+            <div class="flex flex-col rounded-md ">
+                <img src="@Url.Content("~/public/Img/portofolio/" + item.PortImgName)" class="h-full ">
+            </div>
+        }
+    </div>
+</section>
+
+<section class="py-32 mt-10 bg-white " id="services">
+    <div class="px-2 mx-auto sm:w-3/4 lg:w-5/12">
+        <h1 class="text-3xl text-center text-primary">@Lang.ServicesTitle</h1>
+        <p class="text-center text-gray-400 ">@Lang.ServicesDis</p>
+    </div>
+    <div class="container grid max-w-screen-lg grid-cols-1 gap-16 mt-16 md:grid-cols-2 lg:grid-cols-3">
+        @foreach (var item in Model.services)
+        {
+            <div class="flex flex-col rounded-md shadow-md bg-gray-50">
+                <div class="flex flex-col items-center p-6 ">
+                    <img src="@Url.Content("~/public/Img/Services/" + item.ServImg)">
+                    @if (Session["lang"].ToString() == null)
+                    { Session["lang"] = "en"; }
+                    @if (Session["lang"].ToString() != null && Session["lang"].ToString() == "en")
+                    {
+                        <h3 class="mt-5 mb-5 text-lg text-primary ">@item.ServTitleEng</h3>
+                        <p class="mb-2 font-light text-gray-400">
+                            @item.ServDescEng
+                        </p>
+                    }
+                    else
+                    {
+                        <h3 class="mt-5 mb-5 text-lg text-primary ">@item.ServTitleAr</h3>
+                        <p class="mb-2 font-light text-gray-400">
+                            @item.ServDescAr
+                        </p>
+                    }
+
+                </div>
+                <hr class="border-b border-gray-100" />
+                <div class="flex p-6 ">
+                    <a href="@Url.Action("Order","Main",new { id = item.id,lang = Session["lang"].ToString()})" id="btn2" class="flex-1 h-full px-4 py-3 text-xs font-semibold tracking-wider text-center text-white uppercase transition duration-500 bg-gray-500 border-gray-500 cursor-pointer md:border-2 hover:bg-white hover:text-primary ">@Lang.ServicesBtn</a>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+<section class="py-32 mt-10 bg-white " id="team">
+    <div class="px-2 mx-auto sm:w-3/4 lg:w-5/12">
+        <h1 class="text-3xl text-center text-primary">@Lang.TeamTile</h1>
+        <p class="text-center text-gray-400 ">@Lang.TeamDis</p>
+    </div>
+    <div class="container grid max-w-screen-lg grid-cols-1 gap-16 mt-16 md:grid-cols-3 lg:grid-cols-4">
+        @foreach (var item in Model.team)
+        {
+            <div class="flex flex-col ">
+                <div class="flex flex-col items-center p-6 ">
+                    <img src="@Url.Content("~/public/Img/Team/" + item.TeamMemImge)" class="w-40 h-40 rounded-full ">
+                    @if (Session["lang"].ToString() == null)
+                    { Session["lang"] = "en"; }
+                    @if (Session["lang"].ToString() != null && Session["lang"].ToString() == "en")
+                    {
+                        <h3 class="mt-5 mb-5 text-lg text-primary ">@item.TeamMemEngName</h3>
+                        <p class="mb-2 font-light text-gray-400">
+                            @item.TeamMemEngJob
+                        </p>
+                    }
+                    else
+                    {
+                        <h3 class="mt-5 mb-5 text-lg text-primary ">@item.TeamMemArName</h3>
+                        <p class="mb-2 font-light text-gray-400">
+                            @item.TeamMemArJob
+                        </p>
+                    }
+
+
+                </div>
+                <hr class="border-b border-gray-100" />
+                <div class="flex justify-center gap-10 p-6 cursor-pointer">
+                    <a href="#"><i class="pt-2 text-gray-500 transition duration-500 transform fab fa-twitter hover:text-blue-400 "></i></a>
+                    <a href="https://www.youtube.com/watch?v=nF8BQnSvofk"><i class="pt-2 text-gray-500 transition duration-500 transform fab fa-youtube hover:text-red-500"></i></a>
+                    <a href="#"><i class="pt-2 text-gray-500 transition duration-500 transform fab fa-instagram hover:text-pink-500"></i></a>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+<section class="py-20 mt-10 bg-white " id="clients">
+    <div class="px-2 mx-auto sm:w-3/4 lg:w-5/12">
+        <h1 class="text-3xl text-center text-primary">@Lang.ClientsTitle</h1>
+        <p class="text-center text-gray-400 ">@Lang.ClientsDis</p>
+    </div>
+    <div class="container grid max-w-screen-lg grid-cols-1 gap-8 mt-16 md:grid-cols-4 lg:grid-cols-6">
+        @foreach (var item in Model.client)
+        {
+            <div class="flex flex-col justify-center cursor-pointer">
+                <img class="h-full " src="@Url.Content("~/public/Img/clients/" + item.ClientImg)">
+
+            </div>
+        }
+    </div>
+</section>

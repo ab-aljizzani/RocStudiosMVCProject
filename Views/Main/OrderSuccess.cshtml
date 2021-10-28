@@ -1,0 +1,81 @@
+﻿@model RocStudiosMVCProject.Models.Order
+@using RocStudiosMVCProject.Resources
+@{
+    ViewBag.Title = "OrderSuccess";
+    Layout = "~/Views/Shared/_OrderLayout.cshtml";
+}
+
+<div class="h-4/5 bg-gray-50 px-4 sm:px-6 lg:px-8 flex gap-10 justify-center items-center">
+    <div class="pt-20 ">
+        @if (Session["lang"].ToString() == null)
+        { Session["lang"] = "en"; }
+        @if (Session["lang"].ToString() != null && Session["lang"].ToString() == "en")
+        {
+            <h1 class="text-3xl text-green-700 text-center font-bold">@Html.DisplayFor(model => model.OrderSuccessEnd)</h1>
+        }
+        else
+        {
+            <h1 class="text-3xl text-green-700 text-center font-bold">@Html.DisplayFor(model => model.OrderSuccessAr)</h1>
+        }
+
+        <div class="my-2 max-w-max ml-20">
+            <br />
+            <div class="w-full">
+                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                    <table class="min-w-full divide-y divide-gray-200 ">
+                        <thead class="bg-gray-200">
+
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-2xl font-medium text-gray-500 uppercase tracking-wider" colspan="2">
+                                    @Lang.OrderSummary
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-lg text-gray-900"> @Html.DisplayFor(model => model.id)</div>
+
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-lg text-gray-900">@Lang.OrderNu</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-lg text-gray-900"> @Html.DisplayFor(model => model.Name)</div>
+
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-lg text-gray-900">@Lang.Name</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-lg text-gray-900">@Html.DisplayFor(model => model.CustomerEmail)</div>
+
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-lg text-gray-900">@Lang.CustomerEmail</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-lg text-gray-900"> @Html.Label("0")@Html.DisplayFor(model => model.CustomerPhoneNum)</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-lg text-gray-900">@Lang.CustomerPhoneNum</div>
+
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

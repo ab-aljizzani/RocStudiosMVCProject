@@ -1,0 +1,131 @@
+﻿@using RocStudiosMVCProject.Resources;
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/Content/all.css")
+    @Styles.Render("~/Content/modol.css")
+    @Styles.Render("~/Content/styles.css")
+    @Styles.Render("~/Content/tailwind.css")
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    @Scripts.Render("~/Scripts/animateScroll.js")
+    <title>Document</title>
+</head>
+<body class="bg-gray-100 font-poppi">
+
+    <div id="myModal" class="items-center justify-center text-center modal">
+        <div class="w-1/2 max-h-screen pt-10 modal-content">
+            <span class="text-white close hover:text-black">&times;</span>
+            <div class=" lg:pl-32">
+                <img src="" class=" lg:h-5/6" id="modolImg">
+            </div>
+        </div>
+    </div>
+
+    <div id="sidebarmenu" class="fixed inset-y-0 right-0 z-50 w-64 py-16 space-y-6 transition duration-300 ease-in-out transform translate-x-full bg-gray-100 text-primary top-20">
+        <nav class="gap-10 text-right bg-gray-100" id="sidenav">
+            <ul class="text-sm uppercase " id="sidemenu">
+                <li class="p-2 m-1 transition duration-500 transform hover:bg-gray-500 hover:text-white">
+                    <a href="#clients" id="clientscl">@Lang.Clients</a>
+                </li>
+                <li class="p-2 m-1 transition duration-500 transform rounded-sm hover:bg-gray-500 hover:text-white ">
+                    <a href="#team" id="teamcl">@Lang.Team</a>
+                </li>
+                <li class="p-2 m-1 transition duration-500 transform rounded-sm hover:bg-gray-500 hover:text-white ">
+                    <a href="#services" id="servicescl">@Lang.Services</a>
+                </li>
+                <li class="p-2 m-1 transition duration-500 transform rounded-sm hover:bg-gray-500 hover:text-white ">
+                    <a href="#portfolio" id="portfoliocl">@Lang.Portfolio</a>
+                </li>
+                <li class="p-2 m-1 transition duration-500 transform rounded-sm hover:bg-gray-500 hover:text-white">
+                    <a href="#about" id="aboutcl">@Lang.About </a>
+                </li>
+                <li class="p-2 m-1 transition duration-500 transform rounded-sm hover:bg-gray-500 hover:text-white ">
+                    <a href="#home" id="homecl">@Lang.Home</a>
+                </li>
+                <li class="p-2 m-1">
+                    <a href="@Url.Action("Index","Main",new { lang = "en"})" class="px-3 py-1 text-xs font-semibold tracking-wider uppercase transition duration-500 border-2 rounded-full cursor-pointer text-primary border-primary hover:bg-primary hover:text-white ">ENG</a>
+                    <a href="@Url.Action("Index","Main",new { lang = "ar"})" class="px-3 py-1 text-xs font-semibold tracking-wider uppercase transition duration-500 border-2 rounded-full cursor-pointer text-primary border-primary hover:bg-primary hover:text-white ">عربي</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <header class="" id="home">
+        <div class="py-16 ">
+            <nav class="fixed inset-x-0 top-0 z-50 flex justify-center flex-1 py-4 bg-gray-100 " id="nav">
+                <div class="py-1 "><img class="w-56 h-20 " src="~/public/Img/Logo/Logo1.png" alt=""></div>
+                <div>
+                    <ul class="hidden gap-10 px-4 py-6 text-sm uppercase lg:flex" id="menu">
+                        <li class="p-2 m-1 transition duration-500 transform rounded-sm hover:bg-gray-500 hover:text-white ">
+                            <a href="#clients" id="clientscl">@Lang.Clients</a>
+                        </li>
+                        <li class="p-2 m-1 transition duration-500 transform rounded-sm hover:bg-gray-500 hover:text-white ">
+                            <a href="#team" id="teamcl">@Lang.Team</a>
+                        </li>
+                        <li class="p-2 m-1 transition duration-500 transform rounded-sm hover:bg-gray-500 hover:text-white ">
+                            <a href="#services" id="servicescl">@Lang.Services</a>
+                        </li>
+                        <li class="p-2 m-1 transition duration-500 transform rounded-sm hover:bg-gray-500 hover:text-white ">
+                            <a href="#portfolio" id="portfoliocl">@Lang.Portfolio</a>
+                        </li>
+                        <li class="p-2 m-1 transition duration-500 transform rounded-sm hover:bg-gray-500 hover:text-white">
+                            <a href="#about" id="aboutcl">@Lang.About</a>
+                        </li>
+                        <li class="p-2 m-1 transition duration-500 transform rounded-sm hover:bg-gray-500 hover:text-white ">
+                            <a href="#home" id="homecl">@Lang.Home</a>
+                        </li>
+                        <li class="p-2 m-1">
+                            <a href="@Url.Action("Index","Main",new { lang = "en"})" class="px-3 py-1 text-xs font-semibold tracking-wider uppercase transition duration-500 border-2 rounded-full cursor-pointer text-primary border-primary hover:bg-primary hover:text-white ">ENG</a>
+                            <a href="@Url.Action("Index","Main",new { lang = "ar"})" class="px-3 py-1 text-xs font-semibold tracking-wider uppercase transition duration-500 border-2 rounded-full cursor-pointer text-primary border-primary hover:bg-primary hover:text-white ">عربي</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="absolute right-0 cursor-pointer lg:hidden top-1">
+                    <i class="pt-2 fas fa-2x fa-bars text-primary" id="burger"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+    @RenderBody();
+
+    <footer class="py-8 bg-gray-200 " id="footer">
+        <div class="container flex flex-col items-center md:flex-row">
+            <div class="flex flex-wrap items-center justify-center flex-1 gap-12 md:justify-start">
+                <img src="~/public/Img/Logo/Logo1.png" class="w-56 h-24 ">
+                <ul class="flex flex-1 text-xs uppercase ">
+                    <li class="p-2 m-1 transition duration-500 transform hover:bg-gray-500 hover:text-white">
+                        <a href="#clients" id="clientscl">@Lang.Clients</a>
+                    </li>
+                    <li class="p-2 m-1 transition duration-500 transform rounded-sm hover:bg-gray-500 hover:text-white ">
+                        <a href="#team" id="teamcl">@Lang.Team</a>
+                    </li>
+                    <li class="p-2 m-1 transition duration-500 transform rounded-sm hover:bg-gray-500 hover:text-white ">
+                        <a href="#services" id="servicescl">@Lang.Services</a>
+                    </li>
+                    <li class="p-2 m-1 transition duration-500 transform rounded-sm hover:bg-gray-500 hover:text-white ">
+                        <a href="#portfolio" id="portfoliocl">@Lang.Portfolio</a>
+                    </li>
+                    <li class="p-2 m-1 transition duration-500 transform rounded-sm hover:bg-gray-500 hover:text-white">
+                        <a href="#about" id="aboutcl">@Lang.About </a>
+                    </li>
+                    <li class="p-2 m-1 transition duration-500 transform rounded-sm hover:bg-gray-500 hover:text-white ">
+                        <a href="#home" id="homecl">@Lang.Home</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="flex gap-10 mt-12 cursor-pointer md:mt-0">
+                <i class="pt-2 text-gray-500 transition duration-500 transform fa-2x fab fa-twitter hover:text-blue-400 "></i>
+                <i class="pt-2 text-gray-500 transition duration-500 transform fa-2x fab fa-youtube hover:text-red-500 "></i>
+                <i class="pt-2 text-gray-500 transition duration-500 transform fa-2x fab fa-instagram hover:text-pink-500 "></i>
+            </div>
+        </div>
+    </footer>
+    @Scripts.Render("~/Scripts/code.js")
+</body>
+</html>

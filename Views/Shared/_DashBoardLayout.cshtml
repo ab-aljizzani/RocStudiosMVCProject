@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @*@Styles.Render("~/Content/all.css")
+    @Styles.Render("~/Content/styles.css")
+    @Styles.Render("~/Content/tailwind.css")*@
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <div class="relative md:flex min-h-screen ">
+        <!-- mobile menu bar -->
+        <div class=" bg-black flex justify-between md:hidden">
+            <!--logo-->
+            <a href="@Url.Action("Index","Home") " class="block p-4 text-white font-bold">ROC STODIO</a>
+
+            <i class="p-4 fas fa-2x fa-bars text-white focus:bg-gray-300 cursor-pointer" id="burger"></i>
+        </div>
+
+        <!-- sidbar-->
+        <div id="sidebar" class="bg-black text-blue-100 w-64 space-y-6 px-2 py-7 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:-translate-x-0 transition duration-300 ease-in-out">
+            <!--logo-->
+            <a href="@Url.Action("Index","Home") " class=" flex items-center space-x-2 px-4 text-blue-100 hover:text-secodary transition duration-500 transform">
+                <span class=" font-extrabold text-2xl">ROC STODIO</span>
+            </a>
+            <!--nav-->
+            <nav id="menu">
+                <div class="flex flex-1 justify-between py-4 px-4 hover:bg-secodary hover:text-primary rounded transition duration-500 transform"> @Html.ActionLink("My Account", "Index", "Home", "", new { @class = "w-full h-full font-bold" })<i class="fa-2x fas fa-user mr-2"></i></div>
+                <div class="flex flex-1 justify-between py-4 px-4 hover:bg-secodary hover:text-primary rounded transition duration-500 transform"> @Html.ActionLink("Home", "Index", "Home", "", new { @class = "w-full h-full font-bold" })<i class="fa-2x fas fa-house-user mr-2"></i></div>
+                <div class="flex flex-1 justify-between py-4 px-4 hover:bg-secodary hover:text-primary rounded transition duration-500 transform"> @Html.ActionLink("About", "Index", "About", "", new { @class = "w-full h-full font-bold" })<i class="fa-2x fas fa-address-card mr-2"></i></div>
+                <div class="flex flex-1 justify-between py-4 px-4 hover:bg-secodary hover:text-primary rounded transition duration-500 transform"> @Html.ActionLink("Portfolio", "Index", "Portfolio", "", new { @class = "w-full h-full font-bold" })<i class="fa-2x fas fas fa-images mr-2"></i></div>
+                <div class="flex flex-1 justify-between py-4 px-4 hover:bg-secodary hover:text-primary rounded transition duration-500 transform"> @Html.ActionLink("Services", "Index", "Services", "", new { @class = "w-full h-full font-bold" })<i class="fa-2x fas fa-clipboard-list mr-2"></i></div>
+                <div class="flex flex-1 justify-between py-4 px-4 hover:bg-secodary hover:text-primary rounded transition duration-500 transform"> @Html.ActionLink("Orders", "Index", "Order", "", new { @class = "w-full h-full font-bold" })<i class="fa-2x fas fa-list mr-2"></i></div>
+                <div class="flex flex-1 justify-between py-4 px-4 hover:bg-secodary hover:text-primary rounded transition duration-500 transform"> @Html.ActionLink("Team", "Index", "Team", "", new { @class = "w-full h-full font-bold" })<i class="fa-2x fas fa-users mr-2"></i></div>
+                <div class="flex flex-1 justify-between py-4 px-4 hover:bg-secodary hover:text-primary rounded transition duration-500 transform"> @Html.ActionLink("Client", "Index", "Clients", "", new { @class = "w-full h-full font-bold" })<i class="fa-2x fas fa-building mr-2"></i></div>
+                <div class="flex flex-1 justify-between py-4 px-4 hover:bg-secodary hover:text-primary rounded transition duration-500 transform"> @Html.ActionLink("Users", "Index", "Account", "", new { @class = "w-full h-full font-bold" })<i class="fa-2x fas fa-user-plus mr-2"></i></div>
+                <br />
+                <div class="flex flex-1 justify-between py-4 px-4 hover:bg-red-700 hover:text-blue-100 rounded transition duration-500 transform"> @Html.ActionLink("logout", "Logout", "Account", "", new { @class = "w-full h-full font-bold" })<i class="fa-2x fas fa-power-off mr-2"></i></div>
+                <a href="@Url.Action("Index","Main") " class="block bottom-0 fixed w-full py-2.5 px-4 hover:text-secodary rounded transition duration-500 transform">Go To WebSite</a>
+            </nav>
+        </div>
+        <div class=" container">
+
+            @RenderBody()
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

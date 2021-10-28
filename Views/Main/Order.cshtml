@@ -1,0 +1,98 @@
+﻿@model RocStudiosMVCProject.ViewModels.AllModels
+    @using RocStudiosMVCProject.Resources
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_OrderLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("Order", "Main", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class=" container ">
+        <div class="h-4/5 flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-md w-full space-y-8">
+
+                <h1 class="right-0 text-3xl text-center text-primary">@Lang.OrderTitle</h1>
+                <p class="text-center text-gray-400 ">@Lang.OrderDis</p>
+                <div>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.HiddenFor(model => model.dbserv.id)
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        @if (Session["lang"].ToString() == null)
+                        { Session["lang"] = "en"; }
+                        @if (Session["lang"].ToString() != null && Session["lang"].ToString() == "en")
+                        {
+                            @Html.EditorFor(model => model.dbserv.ServTitleEng, new { htmlAttributes = new { @class = "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-secodary focus:border-secodary focus:z-10 sm:text-sm", @disabled = "disabled" } })
+
+                        }
+                        else
+                        {
+                            @Html.EditorFor(model => model.dbserv.ServTitleAr, new { htmlAttributes = new { @class = "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-secodary focus:border-secodary focus:z-10 sm:text-sm", @disabled = "disabled" } })
+
+                        }
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.dborder.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.dborder.Name, new { htmlAttributes = new { @class = "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-secodary focus:border-secodary focus:z-10 sm:text-sm" } })
+                            @Html.ValidationMessageFor(model => model.dborder.Name, "", new { @class = "font-bold text-red-700" })
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.dborder.CustomerEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.dborder.CustomerEmail, new { htmlAttributes = new { @class = "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-secodary focus:border-secodary focus:z-10 sm:text-sm" } })
+                            @Html.ValidationMessageFor(model => model.dborder.CustomerEmail, "", new { @class = "font-bold text-red-700" })
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.dborder.CustomerPhoneNum, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <p>+966</p> @Html.EditorFor(model => model.dborder.CustomerPhoneNum, new { htmlAttributes = new { @class = "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-secodary focus:border-secodary focus:z-10 sm:text-sm" } })
+                            @Html.ValidationMessageFor(model => model.dborder.CustomerPhoneNum, "", new { @class = "font-bold text-red-700" })
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        <label class="font-bold text-red-700">
+                            @if (Session["lang"].ToString() == null)
+                            { Session["lang"] = "en"; }
+                            @if (Session["lang"].ToString() != null && Session["lang"].ToString() == "en")
+                            {
+                                @Html.DisplayFor(model => model.dborder.OrderErrorEng)
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(model => model.dborder.OrderErrorAr)
+                            }
+
+                        </label>
+                        @if (ViewBag.messageAr != null)
+                        {<label class="font-bold text-red-700">@ViewBag.messageAr</label>}
+                        else
+                        {<label class="font-bold text-red-700">@ViewBag.messageEng</label>}
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Send Order" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-secodary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secodary" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

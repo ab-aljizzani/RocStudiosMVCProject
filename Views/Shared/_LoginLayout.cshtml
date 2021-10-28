@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/Content/all.css")
+    @Styles.Render("~/Content/styles.css")
+    @Styles.Render("~/Content/tailwind.css")
+</head>
+<body>
+    <div>
+        <div class="relative min-h-screen ">
+            <div class=" bg-black flex justify-between">
+                <!--logo-->
+                <a href="#" class="block p-4 text-white font-bold">ROCH STODIO</a>
+            </div>
+            <div class=" container">
+                <div class="h-4/5 flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-md w-full space-y-8">
+                        <div>
+                            <img class="mx-auto h-32 w-auto" src="~/public/Img/Logo/Logo1.png" alt="ROCH STODIO">
+
+                        </div>
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/Scripts/admin_code.js")
+</body>
+</html>
